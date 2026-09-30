@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>백주은 AI Product Builder</title>
+<meta name="description" content="문제를 정의하고, AI로 직접 만들어, 사용자에게 출시하는 AI Product Builder 백주은의 포트폴리오">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+/* Layout: TVING 앱 화면 문법 — 대표작 배너 → TOP 5 포스터 줄 → 작품 상세(회차) 순서로 읽힌다 */
+:root{
+  --bg:#000;
+  --surface:#111113;
+  --surface-2:#1a1a1d;
+  --line:#2a2a2e;
+  --fg:#f4f4f5;
+  --muted:#9a9aa1;
+  --red:#ff153c;
+  --red-soft:rgba(255,21,60,.14);
+  --font:"Pretendard Variable","Pretendard","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+  --wrap:1120px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.65;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3{text-wrap:balance;margin:0;letter-spacing:-.03em}
+p{margin:0}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:10;background:linear-gradient(#000 60%,rgba(0,0,0,0));padding-top:env(safe-area-inset-top,0px)}
+.bar .wrap{display:flex;align-items:center;gap:28px;height:64px}
+.logo{font-weight:900;font-size:22px;color:var(--red);letter-spacing:-.04em;text-decoration:none}
+.bar nav{display:flex;gap:22px;overflow-x:auto;scrollbar-width:none;min-width:0}
+.bar nav a{color:var(--muted);text-decoration:none;font-size:15px;font-weight:600;white-space:nowrap}
+.bar nav a:hover{color:var(--fg)}
+
+/* hero */
+.hero{position:relative;padding-block:56px 64px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto 40%;height:140%;background:radial-gradient(closest-side,rgba(255,21,60,.28),rgba(255,21,60,0));pointer-events:none}
+.hero .wrap{position:relative}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--red);text-transform:uppercase}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--red);display:block}
+.hero h1{font-size:clamp(40px,7vw,84px);font-weight:900;line-height:1.05;margin-top:18px;color:var(--red)}
+.hero h1 span{color:var(--fg)}
+.hero .lead{font-size:clamp(18px,2.2vw,22px);color:var(--fg);margin-top:22px;max-width:36em;font-weight:500}
+.hero .meta{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:18px;color:var(--muted);font-size:14px}
+.hero .meta b{color:var(--fg);font-weight:600}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;height:46px;padding-inline:20px;border-radius:6px;font-weight:700;font-size:15px;text-decoration:none;background:var(--surface-2);color:var(--fg);border:1px solid var(--line)}
+.btn.primary{background:var(--red);border-color:var(--red);color:#fff}
+.btn:hover{filter:brightness(1.12)}
+.btn svg{width:14px;height:14px;fill:currentColor}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:48px}
+.stat{background:var(--bg);padding:20px 22px;min-width:0}
+.stat strong{display:block;font-size:clamp(26px,3.4vw,38px);font-weight:800;color:var(--red);line-height:1.1;letter-spacing:-.03em}
+.stat span{display:block;color:var(--muted);font-size:13px;margin-top:6px}
+
+/* section heads */
+section{scroll-margin-top:72px}
+.sec{padding-block:56px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:22px}
+.sec-head h2{font-size:clamp(22px,2.6vw,28px);font-weight:800;color:var(--red)}
+.sec-head p{color:var(--muted);font-size:14px}
+
+/* TOP 5 row */
+.row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,1fr);gap:18px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.pick{display:flex;align-items:flex-end;text-decoration:none;scroll-snap-align:start;min-width:0}
+.rank{font-size:132px;font-weight:900;line-height:.8;color:var(--bg);-webkit-text-stroke:2px var(--muted);margin-right:-18px;position:relative;z-index:1;letter-spacing:-.06em;transition:-webkit-text-stroke-color .2s}
+.poster{position:relative;flex:1;aspect-ratio:2/3;max-width:100%;border-radius:8px;overflow:hidden;background:var(--surface);border:1px solid var(--line);padding:16px 14px;display:flex;flex-direction:column;justify-content:flex-end;transition:transform .25s,border-color .25s}
+.poster::before{content:"";position:absolute;inset:0;background:var(--art);opacity:.95}
+.poster > *{position:relative}
+.poster .tag{position:absolute;top:12px;left:12px;font-size:11px;font-weight:800;letter-spacing:.06em;background:var(--red);color:#fff;padding:3px 7px;border-radius:3px}
+.poster b{font-size:22px;font-weight:900;line-height:1.15;letter-spacing:-.04em;color:#fff}
+.poster small{display:block;color:rgba(255,255,255,.72);font-size:12px;margin-top:6px;line-height:1.4}
+.pick:hover .poster{transform:translateY(-4px);border-color:var(--red)}
+.pick:hover .rank{-webkit-text-stroke-color:var(--red)}
+
+/* project detail */
+.proj{padding-block:64px;border-top:1px solid var(--line)}
+.proj-top{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:40px;align-items:start}
+.kicker{font-size:13px;font-weight:700;color:var(--red);letter-spacing:.06em}
+.proj h2{font-size:clamp(30px,4.4vw,48px);font-weight:900;color:var(--red);margin-top:10px;line-height:1.1}
+.proj h2 small{display:block;font-size:.42em;color:var(--fg);font-weight:600;margin-top:10px;letter-spacing:-.02em}
+.info{display:flex;flex-wrap:wrap;gap:6px 10px;margin-top:18px;font-size:13px;color:var(--muted)}
+.info span{border:1px solid var(--line);border-radius:4px;padding:2px 8px}
+.info span.me{border-color:var(--red);color:var(--fg)}
+.logline{margin-top:22px;font-size:18px;font-weight:500;max-width:34em}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.links a{font-size:14px;font-weight:600;text-decoration:none;padding:7px 12px;border-radius:5px;background:var(--surface-2);border:1px solid var(--line)}
+.links a:hover{border-color:var(--red);color:#fff}
+.links a.red{background:var(--red);border-color:var(--red);color:#fff}
+.kpis{display:grid;gap:10px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.kpi strong{display:block;font-size:30px;font-weight:800;color:var(--red);line-height:1.15;letter-spacing:-.03em}
+.kpi strong em{font-style:normal;color:var(--muted);font-weight:600;font-size:.6em}
+.kpi span{display:block;font-size:14px;color:var(--muted);margin-top:4px}
+
+.eps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:40px}
+.ep{background:var(--surface);border-radius:10px;padding:22px;min-width:0}
+.ep h3{font-size:14px;font-weight:800;color:var(--red);letter-spacing:.02em}
+.ep h4{font-size:18px;font-weight:700;margin:8px 0 10px;letter-spacing:-.02em;line-height:1.35}
+.ep p,.ep li{color:#c9c9cf;font-size:15px}
+.ep ul{margin:0;padding-left:18px;display:grid;gap:6px}
+.ep b{color:var(--fg)}
+
+/* flow diagram */
+.flow{margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;overflow-x:auto}
+.flow-title{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:14px}
+.steps{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.step{border:1px solid var(--line);background:var(--bg);border-radius:6px;padding:8px 12px;font-size:14px;font-weight:600;white-space:nowrap}
+.step.ai{border-color:var(--red);color:#fff;background:var(--red-soft)}
+.step.gate{border-style:dashed;border-color:var(--muted)}
+.arrow{color:var(--muted);font-size:13px}
+.flow-note{margin-top:12px;font-size:13px;color:var(--muted)}
+.flow-note b{color:var(--red);font-weight:700}
+.branch{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px;padding-left:12px;border-left:2px solid var(--red)}
+
+.stack{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px}
+.stack span{font-size:12px;color:var(--muted);background:var(--surface);border-radius:4px;padding:3px 8px}
+
+/* compact projects */
+.minis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.mini{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:26px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.mini h3{font-size:24px;font-weight:900;color:var(--red);line-height:1.2}
+.mini h3 small{display:block;font-size:14px;color:var(--fg);font-weight:600;margin-top:6px;letter-spacing:-.01em}
+.mini p,.mini li{color:#c9c9cf;font-size:15px}
+.mini ul{margin:0;padding-left:18px;display:grid;gap:6px}
+.mini b{color:var(--fg)}
+.mini .hl{display:flex;flex-wrap:wrap;gap:8px 20px;padding-top:12px;border-top:1px solid var(--line);margin-top:auto}
+.mini .hl div strong{display:block;color:var(--red);font-size:22px;font-weight:800;letter-spacing:-.03em}
+.mini .hl div span{font-size:12px;color:var(--muted)}
+
+/* how I build */
+.how{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.how div{border-top:2px solid var(--red);padding-top:16px;min-width:0}
+.how h3{font-size:17px;font-weight:800;line-height:1.35}
+.how p{color:var(--muted);font-size:14px;margin-top:8px}
+
+/* awards */
+.awards{display:grid;gap:0;border-top:1px solid var(--line)}
+.award{display:grid;grid-template-columns:90px minmax(0,1fr) auto;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.award time{color:var(--muted);font-size:14px}
+.award b{font-weight:700}
+.award small{display:block;color:var(--muted);font-size:13px}
+.award em{font-style:normal;color:var(--red);font-weight:800;font-size:14px;white-space:nowrap}
+
+.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.skills div{background:var(--surface);border-radius:10px;padding:20px;min-width:0}
+.skills h3{font-size:14px;color:var(--red);font-weight:800}
+.skills p{color:#c9c9cf;font-size:14px;margin-top:8px}
+
+footer{padding-block:56px 72px;border-top:1px solid var(--line);margin-top:24px}
+footer h2{font-size:clamp(26px,4vw,40px);font-weight:900;color:var(--red)}
+footer p{color:var(--muted);margin-top:10px}
+.contact{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;align-items:center}
+.contact code{font-family:var(--font);font-size:16px;font-weight:700;background:var(--surface-2);border:1px solid var(--line);padding:10px 14px;border-radius:6px;user-select:all}
+
+@media (max-width:900px){
+  .proj-top{grid-template-columns:1fr;gap:28px}
+  .kpis{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .eps{grid-template-columns:1fr}
+  .how{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .skills{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpis{grid-template-columns:1fr}
+  .minis{grid-template-columns:1fr}
+  .how{grid-template-columns:1fr}
+  .rank{font-size:100px}
+  .row{grid-auto-columns:minmax(190px,70%)}
+  .award{grid-template-columns:70px minmax(0,1fr)}
+  .award em{grid-column:2}
+  .sec-head{flex-direction:column;gap:4px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#top">JOOEUN</a>
+    <nav aria-label="섹션">
+      <a href="#top5">TOP 5</a>
+      <a href="#before">BEFORE</a>
+      <a href="#itda">잇다</a>
+      <a href="#more">더 보기</a>
+      <a href="#how">일하는 방식</a>
+      <a href="#awards">수상</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="badge"><i></i>AI Product Builder · 지원자 포트폴리오</div>
+      <h1>백주은<br><span>문제를 정의하고, AI로 직접 만들어, 사용자에게 내놓습니다.</span></h1>
+      <p class="lead">기획서에서 멈추지 않고 LLM·에이전트를 붙여 실제로 동작하는 서비스까지 만듭니다. 토스 미니앱으로 출시한 서비스는 누적 사용자 1만 명을 넘었습니다.</p>
+      <div class="meta">
+        <span><b>경북대학교</b> 컴퓨터학부 · 2027.02 졸업예정</span>
+        <span>학점 <b class="tnum">4.18</b>/4.5</span>
+        <span>카카오테크캠퍼스 4기</span>
+        <span>SQLD · ADsP · TOEIC 840</span>
+      </div>
+      <div class="btns">
+        <a class="btn primary" href="#before"><svg viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z"/></svg>대표 프로젝트 보기</a>
+        <a class="btn" href="https://youtu.be/aG20x-B75vw" target="_blank" rel="noopener">BEFORE 데모 영상</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong class="tnum">10,011명</strong><span>토스 미니앱 누적 사용자 (BEFORE)</span></div>
+        <div class="stat"><strong class="tnum">4.8배</strong><span>LLM 해설 단계 처리 시간 단축</span></div>
+        <div class="stat"><strong class="tnum">0건</strong><span>1,130건×2회 평가 오매칭 (잇다)</span></div>
+        <div class="stat"><strong class="tnum">5회</strong><span>프로젝트·논문 수상</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="top5" class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>백주은 TOP 5 프로젝트</h2>
+        <p>직무 관련도 순 · 포스터를 누르면 상세로 이동</p>
+      </div>
+      <div class="row">
+        <a class="pick" href="#before"><span class="rank" aria-hidden="true">1</span>
+          <div class="poster" style="--art:radial-gradient(120% 70% at 80% 10%,#ff153c 0%,rgba(255,21,60,0) 60%),linear-gradient(180deg,#1c0006,#000 75%)">
+            <span class="tag">출시</span><b>BEFORE</b><small>미국주식 하방 리스크 예측 · 토스 미니앱</small></div></a>
+        <a class="pick" href="#itda"><span class="rank" aria-hidden="true">2</span>
+          <div class="poster" style="--art:linear-gradient(160deg,rgba(255,21,60,.9) 0 18%,transparent 18% 100%),linear-gradient(180deg,#140a10,#000 80%)">
+            <span class="tag">PM</span><b>잇다</b><small>장애아동 돌봄기록을 잇는 AI 에이전트</small></div></a>
+        <a class="pick" href="#breadfeet"><span class="rank" aria-hidden="true">3</span>
+          <div class="poster" style="--art:repeating-linear-gradient(135deg,rgba(255,21,60,.22) 0 12px,transparent 12px 28px),linear-gradient(180deg,#1a0c08,#000 80%)">
+            <span class="tag">추천</span><b>BREAD FEET</b><small>취향 분석 기반 빵지순례 추천</small></div></a>
+        <a class="pick" href="#paracel"><span class="rank" aria-hidden="true">4</span>
+          <div class="poster" style="--art:radial-gradient(circle at 50% 38%,rgba(255,21,60,.55) 0 22%,transparent 23%),linear-gradient(180deg,#0c0c14,#000 80%)">
+            <span class="tag">인턴</span><b>홈케어 로봇 AI</b><small>베트남 Paracel · 온디바이스 LLM</small></div></a>
+        <a class="pick" href="#imbank"><span class="rank" aria-hidden="true">5</span>
+          <div class="poster" style="--art:linear-gradient(0deg,rgba(255,21,60,.5) 0 3px,transparent 3px) 0 0/100% 22px,linear-gradient(180deg,#0b0b0b,#000 80%)">
+            <span class="tag">최우수</span><b>아임파인뱅크앤유</b><small>개인정보 유출 탐지 AI 에이전트</small></div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1. BEFORE -->
+  <section id="before" class="proj">
+    <div class="wrap">
+      <div class="proj-top">
+        <div>
+          <div class="kicker">TOP 1 · 산학협력 (주)인비고웍스</div>
+          <h2>BEFORE<small>사기 전에, 최악의 경우부터 보여주는 미국주식 리스크 서비스</small></h2>
+          <div class="info">
+            <span class="tnum">2026.03 – 06 · 16주</span><span>5인 팀</span><span class="me">기획 · 백엔드 리드</span><span>토스 미니앱 정식 출시</span>
+          </div>
+          <p class="logline">증권 앱은 모두 "얼마나 오를까"만 말합니다. 초보 투자자에게 필요한 건 "최악이면 얼마나 떨어지나"라고 보고, 30일 하방 시나리오와 그 이유를 쉬운 한국어로 보여주는 서비스를 만들었습니다.</p>
+          <div class="links">
+            <a class="red" href="https://youtu.be/aG20x-B75vw" target="_blank" rel="noopener">▶ 데모 영상</a>
+            <a href="https://zeri-client.vercel.app" target="_blank" rel="noopener">웹 서비스</a>
+            <a href="https://github.com/JusikCool/ZERi-server" target="_blank" rel="noopener">GitHub · Server</a>
+            <a href="https://github.com/JusikCool/ZERi-client" target="_blank" rel="noopener">GitHub · Client</a>
+          </div>
+        </div>
+        <div class="kpis">
+          <div class="kpi"><strong class="tnum">10,011<em>명</em></strong><span>토스 인앱 출시 후 누적 사용자</span></div>
+          <div class="kpi"><strong class="tnum">43<em>%</em></strong><span>출시 전 랜딩페이지 사전예약 전환 (122/286)</span></div>
+          <div class="kpi"><strong class="tnum">6m1s → 1m15s</strong><span>매일 도는 LLM 해설 단계 (4.8배 단축)</span></div>
+        </div>
+      </div>
+
+      <div class="eps">
+        <article class="ep">
+          <h3>문제 정의</h3>
+          <h4>상승 예측 대신 하방 리스크를 먼저</h4>
+          <ul>
+            <li>기존 증권 서비스는 목표가·상승률 중심이라 <b>손실 규모</b>를 알려주지 않음</li>
+            <li>모델이 결과만 주면 "왜 위험한지" 알 수 없음 → 초보자는 믿지 못함</li>
+            <li>출시 전 랜딩페이지로 수요를 먼저 검증: 방문 286명 중 <b>122명 사전예약</b></li>
+          </ul>
+        </article>
+        <article class="ep">
+          <h3>AI를 어떻게 붙였나</h3>
+          <h4>숫자는 모델이, 설명은 LLM이</h4>
+          <ul>
+            <li>TFT 모델이 30일 분위수 경로와 최악 손실률을 계산, XAI로 영향 변수 Top-3 추출</li>
+            <li>Upstage Solar LLM이 Top-3를 <b>3단 한국어 해설</b>로 풀어 씀 (프롬프트 v11까지 개선)</li>
+            <li>LLM에는 사실 묶음만 주고 숫자를 못 바꾸게 함. "매수·추천·보장" 금칙어 검증, 실패 시 템플릿으로 대체 (자본시장법 대응)</li>
+          </ul>
+        </article>
+        <article class="ep">
+          <h3>내가 한 일</h3>
+          <h4>핵심 기능이 부가 기능 때문에 멈추지 않게</h4>
+          <ul>
+            <li>LLM 타임아웃이 뒤따르는 <b>위험 알림 발송까지 막는 문제</b>를 발견 → 알림 단계를 분리해 항상 실행되게 하고, LLM 호출은 병렬화</li>
+            <li>인증(JWT 회전)·회원·워치리스트·요청 제한 API 11개, 테스트 53개 작성</li>
+            <li>GitHub Actions 매일 새벽 파이프라인, 위험 등급 변화 푸시 알림(FCM) 구현</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="flow" role="img" aria-label="BEFORE 매일 06시 30분 자동 파이프라인: 가격 수집, 거시지표, TFT 추론, LLM 해설, 등급 변화 알림. LLM 단계가 실패해도 알림은 항상 실행.">
+        <div class="flow-title">매일 06:30 KST 자동 파이프라인</div>
+        <div class="steps">
+          <span class="step">가격 수집 · yfinance</span><span class="arrow">→</span>
+          <span class="step">거시지표 12종 · FRED</span><span class="arrow">→</span>
+          <span class="step ai">TFT 하방 추론</span><span class="arrow">→</span>
+          <span class="step ai">LLM 해설 캐시 · 병렬 5</span>
+        </div>
+        <div class="branch">
+          <span class="arrow">항상 실행</span><span class="step">위험 등급 변화 감지</span><span class="arrow">→</span><span class="step">푸시 알림 · FCM</span>
+        </div>
+        <p class="flow-note">파이프라인 전체 6m39s → 2m9s. <b>LLM이 실패해도 알림 발송은 100% 보장</b>되도록 단계를 격리. LLM은 사용자 요청 경로에서 호출하지 않아 응답 지연 없음.</p>
+      </div>
+      <div class="stack"><span>FastAPI</span><span>PostgreSQL</span><span>PyTorch Lightning · TFT</span><span>Upstage Solar</span><span>React · TypeScript</span><span>SwiftUI</span><span>GitHub Actions</span><span>Docker · AWS EC2</span><span>FCM</span></div>
+    </div>
+  </section>
+
+  <!-- 2. 잇다 -->
+  <section id="itda" class="proj">
+    <div class="wrap">
+      <div class="proj-top">
+        <div>
+          <div class="kicker">TOP 2 · 카카오테크캠퍼스 4기</div>
+          <h2>잇다<small>학교·센터·부모에게 흩어진 장애아동 돌봄기록을 잇는 AI 에이전트</small></h2>
+          <div class="info">
+            <span class="tnum">2026.05 – 09</span><span>팀 프로젝트</span><span class="me">PM · 매칭 에이전트 개발 · FE 초안</span><span>AWS 배포</span>
+          </div>
+          <p class="logline">센터가 알아낸 "손을 잡고 30까지 세면 진정돼요"를 학교는 모릅니다. 부족한 건 관찰이 아니라 연결이라고 정의하고, 기관마다 다른 기록을 올바른 아이에게 붙이는 AI 에이전트를 만들었습니다.</p>
+          <div class="links">
+            <a class="red" href="https://iitda.duckdns.org" target="_blank" rel="noopener">서비스 바로가기</a>
+            <a href="https://github.com/kakaotechcampus-4/ktc4-kyungpook-2" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+        <div class="kpis">
+          <div class="kpi"><strong class="tnum">0<em>건</em></strong><span>1,130건 × 2회 평가 오매칭·놓침·오탐</span></div>
+          <div class="kpi"><strong class="tnum">79.7 → 99.6<em>%</em></strong><span>같은 입력의 판정 일관성</span></div>
+          <div class="kpi"><strong class="tnum">153 → 200<em>건</em></strong><span>사람 확인 없이 자동 확정된 기록 (1,110건 중)</span></div>
+        </div>
+      </div>
+
+      <div class="eps">
+        <article class="ep">
+          <h3>제품 판단</h3>
+          <h4>틀리게 잇느니 안 잇는다</h4>
+          <ul>
+            <li>다른 아이에게 기록이 붙으면 되돌릴 수 없는 개인정보 사고 → <b>정밀도 최우선</b></li>
+            <li>애매한 건 "확인 필요" 큐로 보내 교사가 처리, 승인된 기록만 저장·공유 (Human Gate 2단계)</li>
+            <li>1차 목표를 기능 개수가 아닌 <b>입력부터 공유까지 끊기지 않는 흐름</b>으로 설정</li>
+          </ul>
+        </article>
+        <article class="ep">
+          <h3>AI를 어떻게 붙였나</h3>
+          <h4>LLM은 애매할 때만 부른다</h4>
+          <ul>
+            <li>LangGraph로 추출 → 후보 좁히기 → (조건부) LLM 판정 → 결정 그래프 설계</li>
+            <li>이름이 명확하면 LLM을 건너뜀 → 정확도와 비용 모두 개선</li>
+            <li>임베딩은 비슷한 이름을 가깝게 봐서 동명이인에서 틀림 → 매칭엔 쓰지 않음</li>
+          </ul>
+        </article>
+        <article class="ep">
+          <h3>평가를 의심하기</h3>
+          <h4>96%가 나왔을 때 더 따져봤다</h4>
+          <ul>
+            <li>모델의 자기보고 confidence가 두 번 실행 시 같았던 비율 44.5% → 임계값 대신 <b>규칙 판정</b>으로 전환</li>
+            <li>3줄짜리 단순 기준선이 100%를 받는 걸 보고 평가셋 결함 발견 → 기준선 채점 도구 제작</li>
+            <li>튜닝 데이터에 섞인 holdout을 분리 (dev 665 / holdout 405)</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="flow" role="img" aria-label="잇다 기록 처리 흐름: 기관 기록, 매칭 에이전트, 검증 에이전트, 요약, 교사 승인, 아동별 통합 기록, 인사이트, 발송 승인, 부모 공유.">
+        <div class="flow-title">기록 한 건이 부모에게 닿기까지</div>
+        <div class="steps">
+          <span class="step">기관 기록 업로드</span><span class="arrow">→</span>
+          <span class="step ai">매칭 에이전트</span><span class="arrow">→</span>
+          <span class="step ai">검증 에이전트</span><span class="arrow">→</span>
+          <span class="step">요약</span><span class="arrow">→</span>
+          <span class="step gate">교사 승인</span><span class="arrow">→</span>
+          <span class="step">아동별 통합 기록</span><span class="arrow">→</span>
+          <span class="step">인사이트</span><span class="arrow">→</span>
+          <span class="step gate">발송 승인</span><span class="arrow">→</span>
+          <span class="step">부모 공유</span>
+        </div>
+        <p class="flow-note"><b>매칭 에이전트는 제가 주 개발자</b>(매칭 코드 커밋 11개 중 10개). 검증 에이전트는 전화번호·주민번호를 정규식으로 항상 차단해 모델 호출이 실패해도 규칙이 지켜집니다. 원본은 기관 밖으로 나가지 않고, 부모가 동의한 범위만 공유됩니다.</p>
+      </div>
+      <div class="stack"><span>LangGraph</span><span>FastAPI</span><span>Pydantic</span><span>Spring Boot</span><span>PostgreSQL</span><span>React · Vite · Tailwind</span><span>Docker Compose</span><span>AWS EC2</span><span>GitHub Actions</span><span>카카오 OAuth</span></div>
+    </div>
+  </section>
+
+  <!-- more -->
+  <section id="more" class="sec" style="border-top:1px solid var(--line)">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>더 보기</h2>
+        <p>추천 · 온디바이스 LLM · AI 에이전트 자동화</p>
+      </div>
+      <div class="minis">
+        <article class="mini" id="breadfeet" style="scroll-margin-top:72px">
+          <div class="kicker">TOP 3 · 산학협력 (주)엔앤피코리아 · 2025.09 – 12</div>
+          <h3>BREAD FEET<small>빵 취향 분석 기반 빵지순례 추천 웹</small></h3>
+          <p>빵지순례는 인스타그램 태그만 91.7만 개인데, 기존 서비스는 빵집을 나열할 뿐 개인 취향을 모릅니다. 10문항 설문으로 <b>빵 취향 유형</b>을 만들고 맞는 빵집과 순례 코스를 추천했습니다.</p>
+          <ul>
+            <li><b>역할:</b> 디자인 · 프론트엔드 · AI (4인 팀)</li>
+            <li>설문으로 빵 9종 선호를 예측하는 멀티라벨 분류기, 빵집 리뷰 20개를 요약하는 BART 모델을 FastAPI로 서빙</li>
+            <li>SNS 기능을 빼고 개인화에 집중, 테마 필터를 추천 경로에 통합하는 등 범위를 줄여 핵심에 집중</li>
+            <li>같은 과제를 ChatGPT·Claude·Gemini에게 바이브 코딩으로 맡겨 비교한 실험을 <b>논문으로 발표</b></li>
+          </ul>
+          <div class="hl">
+            <div><strong class="tnum">65.9%</strong><span>최고 Top-3 정확도 (Claude·Gemini LR)</span></div>
+            <div><strong>우수논문상</strong><span>한국정보기술학회 2025 추계</span></div>
+          </div>
+        </article>
+
+        <article class="mini" id="paracel" style="scroll-margin-top:72px">
+          <div class="kicker">TOP 4 · Paracel Technology Solutions (베트남) · 2026.01 – 02</div>
+          <h3>홈케어 로봇 AI<small>20인 프로젝트의 AI 파트 · 해외 인턴십</small></h3>
+          <p>로봇이 사용자의 말을 명령으로 바꾸고, 병력을 기억하며 대화하고, 개인 물건을 알아보도록 세 개의 AI 모듈을 만들었습니다.</p>
+          <ul>
+            <li><b>의도 분류:</b> FunctionGemma-270M으로 "우회전 전에 3m 직진" 같은 복합 명령을 JSON 액션으로 변환</li>
+            <li><b>대화:</b> 경량 LLM LFM2-350M + 의학 문서 RAG. 병목을 3번의 가설로 추적해 실제 원인이 프롬프트 길이임을 확인하고 컨텍스트 구성을 재설계</li>
+            <li><b>객체 인식:</b> DINOv2 + FAISS 원샷 등록, 5프레임 연속 일치 시에만 확정해 오인식 감소</li>
+          </ul>
+          <div class="hl">
+            <div><strong class="tnum">4.5s → 1.9s</strong><span>대화 모듈 첫 응답 시간</span></div>
+            <div><strong class="tnum">3개</strong><span>담당 AI 모듈</span></div>
+          </div>
+        </article>
+
+        <article class="mini" id="imbank" style="scroll-margin-top:72px">
+          <div class="kicker">TOP 5 · 대학 X Upstage AI Agent 해커톤 · iM뱅크 지정주제</div>
+          <h3>아임파인뱅크앤유<small>금융권 개인정보 유출 탐지 AI 에이전트</small></h3>
+          <p>개인정보 유출 사고의 약 30%가 직원의 업무 과실입니다. 메일·파일 전송 흐름에서 개인정보를 잡아내고 마스킹·알림까지 자동화했습니다.</p>
+          <ul>
+            <li>정규식 1차 필터 + Solar LLM 문맥 판별의 <b>이중 탐지</b>, 개인정보보호법 조항 매핑과 위험도 3단계</li>
+            <li>OCR 파이프라인 연결, n8n 자동화 워크플로우 (5인 팀)</li>
+            <li>SaaS 구독 모델·로드맵까지 사업 기획</li>
+          </ul>
+          <div class="hl">
+            <div><strong>최우수상</strong><span>iM뱅크 지정주제 부문</span></div>
+            <div><a href="https://github.com/i-mfinebankandyou/imbank_BE" target="_blank" rel="noopener" style="color:var(--fg);font-weight:700">GitHub →</a><span style="display:block">imbank_BE</span></div>
+          </div>
+        </article>
+
+        <article class="mini">
+          <div class="kicker">그 외 · 대구RISE 청년인재 혁신아카데미 · 2026.02</div>
+          <h3>철강 표면 결함 탐지<small>YOLOv8 · 컴퓨터·기계·전자 4인 팀장</small></h3>
+          <p>AI 탐지를 원한 저와 로봇 제어를 원한 팀원들의 의견을 <b>"탐지 결과가 로봇 작업으로 이어지는 하나의 흐름"</b>으로 합쳤습니다.</p>
+          <ul>
+            <li>Confusion Matrix·EigenCAM으로 오분류 유형 분석, 취약 클래스 중심 증강</li>
+            <li>기계공학 팀원에게 결함의 물리적 특성을 배워 증강 기준 설정</li>
+          </ul>
+          <div class="hl">
+            <div><strong class="tnum">0.73 → 0.876</strong><span>mAP50</span></div>
+            <div><strong>대상</strong><span>로봇 특화 과정 팀 프로젝트</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="sec" style="border-top:1px solid var(--line)">
+    <div class="wrap">
+      <div class="sec-head"><h2>이렇게 만듭니다</h2><p>다섯 프로젝트에서 반복된 방식</p></div>
+      <div class="how">
+        <div><h3>만들기 전에 수요부터 확인</h3><p>BEFORE는 개발 전 랜딩페이지로 사전예약 43%를 확인하고 시작했습니다.</p></div>
+        <div><h3>LLM은 필요한 곳에만</h3><p>규칙으로 풀리는 건 규칙으로, 애매한 것만 LLM으로. 정확도와 비용을 함께 챙깁니다.</p></div>
+        <div><h3>AI가 실패해도 서비스는 돈다</h3><p>LLM 실패 시 템플릿 대체, 알림 단계 격리, 사람 승인 게이트를 설계에 넣습니다.</p></div>
+        <div><h3>좋은 숫자일수록 의심</h3><p>기준선 비교, holdout 분리, 반복 실행 일관성으로 평가 자체를 검증합니다.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="awards" class="sec" style="border-top:1px solid var(--line)">
+    <div class="wrap">
+      <div class="sec-head"><h2>수상</h2><p>최근 순</p></div>
+      <div class="awards">
+        <div class="award"><time class="tnum">2026.07</time><div><b>2026 한국컴퓨터종합학술대회 학부생 논문경진대회</b><small>한국정보과학회 · TFT 기반 하방 리스크 예측 (BEFORE)</small></div><em>장려상</em></div>
+        <div class="award"><time class="tnum">2026.06</time><div><b>2026-1 산학협력 프로젝트 경진대회</b><small>경북대 인공지능혁신융합대학사업단 · BEFORE</small></div><em>최우수상</em></div>
+        <div class="award"><time class="tnum">2026.03</time><div><b>대구RISE 청년인재 혁신아카데미 로봇 특화 과정</b><small>경북대 소프트웨어교육원 · 철강 결함 탐지</small></div><em>대상</em></div>
+        <div class="award"><time class="tnum">2025.12</time><div><b>대학 X Upstage AI Agent 해커톤 · iM뱅크 지정주제</b><small>경북대 소프트웨어교육원 · 아임파인뱅크앤유</small></div><em>최우수상</em></div>
+        <div class="award"><time class="tnum">2025.11</time><div><b>한국정보기술학회 추계 대학생 논문경진대회</b><small>바이브 코딩을 이용한 LLM의 AI 모델 구현 성능 비교</small></div><em>우수논문상</em></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="border-top:1px solid var(--line)">
+    <div class="wrap">
+      <div class="sec-head"><h2>도구</h2></div>
+      <div class="skills">
+        <div><h3>AI · LLM</h3><p>LangGraph, RAG(FAISS), 프롬프트 설계, LLM 평가 설계, Upstage Solar, OpenAI 호환 API, 온디바이스 LLM(llama.cpp), PyTorch, YOLOv8, DINOv2</p></div>
+        <div><h3>제품 · 빌드</h3><p>FastAPI, Spring Boot, React · TypeScript, PostgreSQL, Docker, AWS EC2, GitHub Actions, n8n, Claude Code 등 AI 코딩 도구</p></div>
+        <div><h3>기획 · 협업</h3><p>문제 정의, 랜딩페이지 수요 검증, 기능 명세·와이어프레임, 평가 지표 설계, 타 전공 팀 리딩, 해외 인턴·교환학생(체코)</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2>다음 작품은 TVING에서.</h2>
+    <p>시청자가 볼 작품을 더 빨리 찾게 하는 AI 기능을, 기획부터 출시까지 직접 만들고 싶습니다.</p>
+    <div class="contact">
+      <code>jueun1827@naver.com</code>
+      <a class="btn" href="https://github.com/gogumajoha" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
