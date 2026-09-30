@@ -126,7 +126,7 @@ section{scroll-margin-top:72px}
 .stack span{font-size:12px;color:var(--muted);background:var(--surface);border-radius:4px;padding:3px 8px}
 
 /* compact projects */
-.minis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.minis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .mini{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:26px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .mini h3{font-size:24px;font-weight:900;color:var(--red);line-height:1.2}
 .mini h3 small{display:block;font-size:14px;color:var(--fg);font-weight:600;margin-top:6px;letter-spacing:-.01em}
@@ -169,6 +169,7 @@ footer p{color:var(--muted);margin-top:10px}
   .eps{grid-template-columns:1fr}
   .how{grid-template-columns:repeat(2,minmax(0,1fr))}
   .skills{grid-template-columns:1fr}
+  .minis{grid-template-columns:1fr}
 }
 @media (max-width:640px){
   .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -189,7 +190,7 @@ footer p{color:var(--muted);margin-top:10px}
   <div class="wrap">
     <a class="logo" href="#top">JOOEUN</a>
     <nav aria-label="섹션">
-      <a href="#top5">TOP 5</a>
+      <a href="#top5">TOP 4</a>
       <a href="#before">BEFORE</a>
       <a href="#itda">잇다</a>
       <a href="#more">더 보기</a>
@@ -227,7 +228,7 @@ footer p{color:var(--muted);margin-top:10px}
   <section id="top5" class="sec">
     <div class="wrap">
       <div class="sec-head">
-        <h2>백주은 TOP 5 프로젝트</h2>
+        <h2>백주은 TOP 4 프로젝트</h2>
         <p>직무 관련도 순 · 포스터를 누르면 상세로 이동</p>
       </div>
       <div class="row">
@@ -237,13 +238,10 @@ footer p{color:var(--muted);margin-top:10px}
         <a class="pick" href="#itda"><span class="rank" aria-hidden="true">2</span>
           <div class="poster" style="--art:linear-gradient(160deg,rgba(255,21,60,.9) 0 18%,transparent 18% 100%),linear-gradient(180deg,#140a10,#000 80%)">
             <span class="tag">PM</span><b>잇다</b><small>장애아동 돌봄기록을 잇는 AI 에이전트</small></div></a>
-        <a class="pick" href="#breadfeet"><span class="rank" aria-hidden="true">3</span>
-          <div class="poster" style="--art:repeating-linear-gradient(135deg,rgba(255,21,60,.22) 0 12px,transparent 12px 28px),linear-gradient(180deg,#1a0c08,#000 80%)">
-            <span class="tag">추천</span><b>BREAD FEET</b><small>취향 분석 기반 빵지순례 추천</small></div></a>
-        <a class="pick" href="#paracel"><span class="rank" aria-hidden="true">4</span>
+        <a class="pick" href="#paracel"><span class="rank" aria-hidden="true">3</span>
           <div class="poster" style="--art:radial-gradient(circle at 50% 38%,rgba(255,21,60,.55) 0 22%,transparent 23%),linear-gradient(180deg,#0c0c14,#000 80%)">
             <span class="tag">인턴</span><b>홈케어 로봇 AI</b><small>베트남 Paracel · 온디바이스 LLM</small></div></a>
-        <a class="pick" href="#imbank"><span class="rank" aria-hidden="true">5</span>
+        <a class="pick" href="#imbank"><span class="rank" aria-hidden="true">4</span>
           <div class="poster" style="--art:linear-gradient(0deg,rgba(255,21,60,.5) 0 3px,transparent 3px) 0 0/100% 22px,linear-gradient(180deg,#0b0b0b,#000 80%)">
             <span class="tag">최우수</span><b>아임파인뱅크앤유</b><small>개인정보 유출 탐지 AI 에이전트</small></div></a>
       </div>
@@ -399,28 +397,12 @@ footer p{color:var(--muted);margin-top:10px}
     <div class="wrap">
       <div class="sec-head">
         <h2>더 보기</h2>
-        <p>추천 · 온디바이스 LLM · AI 에이전트 자동화</p>
+        <p>온디바이스 LLM · AI 에이전트 자동화 · 비전 AI</p>
       </div>
       <div class="minis">
-        <article class="mini" id="breadfeet" style="scroll-margin-top:72px">
-          <div class="kicker">TOP 3 · 산학협력 (주)엔앤피코리아 · 2025.09 – 12</div>
-          <h3>BREAD FEET<small>빵 취향 분석 기반 빵지순례 추천 웹</small></h3>
-          <p>빵지순례는 인스타그램 태그만 91.7만 개인데, 기존 서비스는 빵집을 나열할 뿐 개인 취향을 모릅니다. 10문항 설문으로 <b>빵 취향 유형</b>을 만들고 맞는 빵집과 순례 코스를 추천했습니다.</p>
-          <ul>
-            <li><b>역할:</b> 디자인 · 프론트엔드 · AI (4인 팀)</li>
-            <li>설문으로 빵 9종 선호를 예측하는 멀티라벨 분류기, 빵집 리뷰 20개를 요약하는 BART 모델을 FastAPI로 서빙</li>
-            <li>SNS 기능을 빼고 개인화에 집중, 테마 필터를 추천 경로에 통합하는 등 범위를 줄여 핵심에 집중</li>
-            <li>같은 과제를 ChatGPT·Claude·Gemini에게 바이브 코딩으로 맡겨 비교한 실험을 <b>논문으로 발표</b></li>
-          </ul>
-          <div class="hl">
-            <div><strong class="tnum">65.9%</strong><span>최고 Top-3 정확도 (Claude·Gemini LR)</span></div>
-            <div><strong>우수논문상</strong><span>한국정보기술학회 2025 추계</span></div>
-          </div>
-          <div class="links"><a class="red" href="https://bread-feet.vercel.app/" target="_blank" rel="noopener">서비스 바로가기</a></div>
-        </article>
 
         <article class="mini" id="paracel" style="scroll-margin-top:72px">
-          <div class="kicker">TOP 4 · Paracel Technology Solutions (베트남) · 2026.01 – 02</div>
+          <div class="kicker">TOP 3 · Paracel Technology Solutions (베트남) · 2026.01 – 02</div>
           <h3>홈케어 로봇 AI<small>20인 프로젝트의 AI 파트 · 해외 인턴십</small></h3>
           <p>로봇이 사용자의 말을 명령으로 바꾸고, 병력을 기억하며 대화하고, 개인 물건을 알아보도록 세 개의 AI 모듈을 만들었습니다.</p>
           <ul>
@@ -436,7 +418,7 @@ footer p{color:var(--muted);margin-top:10px}
         </article>
 
         <article class="mini" id="imbank" style="scroll-margin-top:72px">
-          <div class="kicker">TOP 5 · 대학 X Upstage AI Agent 해커톤 · iM뱅크 지정주제</div>
+          <div class="kicker">TOP 4 · 대학 X Upstage AI Agent 해커톤 · iM뱅크 지정주제</div>
           <h3>아임파인뱅크앤유<small>금융권 개인정보 유출 탐지 AI 에이전트</small></h3>
           <p>개인정보 유출 사고의 약 30%가 직원의 업무 과실입니다. 메일·파일 전송 흐름에서 개인정보를 잡아내고 마스킹·알림까지 자동화했습니다.</p>
           <ul>
@@ -469,7 +451,7 @@ footer p{color:var(--muted);margin-top:10px}
 
   <section id="how" class="sec" style="border-top:1px solid var(--line)">
     <div class="wrap">
-      <div class="sec-head"><h2>이렇게 만듭니다</h2><p>다섯 프로젝트에서 반복된 방식</p></div>
+      <div class="sec-head"><h2>이렇게 만듭니다</h2><p>프로젝트마다 반복된 방식</p></div>
       <div class="how">
         <div><h3>만들기 전에 수요부터 확인</h3><p>BEFORE는 개발 전 랜딩페이지로 사전예약 43%를 확인하고 시작했습니다.</p></div>
         <div><h3>LLM은 필요한 곳에만</h3><p>규칙으로 풀리는 건 규칙으로, 애매한 것만 LLM으로. 정확도와 비용을 함께 챙깁니다.</p></div>
