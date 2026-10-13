@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>백주은 포트폴리오</title>
+<meta name="description" content="백주은 · 경북대학교 컴퓨터학부 · AI 에이전트·백엔드 프로젝트 6건">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2.0.5/fonts/static/woff2/SUIT-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2.0.5/fonts/static/woff2/SUIT-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:'SUIT';font-weight:400;font-display:swap;src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2.0.5/fonts/static/woff2/SUIT-Regular.woff2') format('woff2')}
+@font-face{font-family:'SUIT';font-weight:700;font-display:swap;src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2.0.5/fonts/static/woff2/SUIT-Bold.woff2') format('woff2')}
+@font-face{font-family:'SUIT';font-weight:800;font-display:swap;src:url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2.0.5/fonts/static/woff2/SUIT-ExtraBold.woff2') format('woff2')}
+
+:root{
+  --red:#E60012; --orange:#FF5A2A; --navy:#080B27; --gray:#85889A;
+  --text:#111; --sub:#555; --line:#E4E5EA; --bg:#fff; --soft:#F5F6F8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-snap-type:y proximity;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:'SUIT',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:16px;line-height:1.55;word-break:keep-all;overflow-wrap:anywhere}
+a{color:inherit}
+img{display:block;max-width:100%;height:auto}
+ul{list-style:none}
+.tnum{font-variant-numeric:tabular-nums}
+
+.ar{font-family:Arial,'Helvetica Neue',sans-serif;font-weight:400;margin:0 .12em}
+.nums strong .ar{font-weight:700}
+
+/* 섹션 공통 */
+.page{min-height:100vh;scroll-snap-align:start;padding:56px 64px;display:flex;flex-direction:column;justify-content:center;border-top:1px solid var(--line)}
+.page:first-of-type{border-top:0}
+.wrap{width:100%;max-width:1312px;margin:0 auto}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--red)}
+
+/* Hero */
+.hero h1{font-size:56px;font-weight:800;color:var(--navy);letter-spacing:-.02em;line-height:1.15;margin-top:12px}
+.hero .edu{margin-top:14px;font-size:19px;color:var(--text)}
+.hero .edu b{font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-size:14px;font-weight:700;color:var(--navy);background:#fff}
+.hero .chips{margin-top:16px}
+.contact{display:flex;flex-wrap:wrap;gap:6px 24px;margin-top:18px;font-size:15px;color:var(--sub)}
+.contact a{color:var(--navy);font-weight:700;text-decoration:none;border-bottom:1px solid var(--line)}
+.contact a:hover{border-color:var(--red)}
+.index{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:0 24px}
+.index a{display:grid;grid-template-columns:28px 1fr;gap:2px 8px;padding:12px 0;border-top:1px solid var(--line);text-decoration:none}
+.index a:hover b{color:var(--red)}
+.index i{font-style:normal;font-weight:800;color:var(--red);font-size:14px;line-height:1.6}
+.index b{font-weight:800;color:var(--navy)}
+.index small{grid-column:2;color:var(--sub);font-size:14px}
+
+/* 프로젝트 섹션 */
+.proj .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:48px;align-items:center}
+.meta-top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.num{font-weight:800;color:var(--red);font-size:14px;letter-spacing:.06em}
+.badge{display:inline-block;font-size:13px;font-weight:700;color:var(--red);border:1px solid var(--red);border-radius:4px;padding:2px 8px;line-height:1.5}
+.proj h2{font-size:38px;font-weight:800;color:var(--navy);letter-spacing:-.02em;line-height:1.2;margin-top:8px}
+.facts{display:flex;flex-wrap:wrap;gap:4px 0;margin-top:10px;font-size:14px;color:var(--sub)}
+.facts span + span::before{content:"";display:inline-block;width:1px;height:11px;background:var(--line);margin:0 10px;vertical-align:-1px}
+.role{margin-top:8px;font-size:15px}
+.role b{font-weight:700;color:var(--navy)}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.summary{margin-top:18px;font-size:20px;font-weight:700;color:var(--text);line-height:1.4}
+.nums{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;margin-top:20px;border-top:2px solid var(--navy)}
+.nums div{padding:14px 16px 0 0}
+.nums div + div{padding-left:16px;border-left:1px solid var(--line)}
+.nums strong{display:block;font-size:30px;font-weight:800;color:var(--red);line-height:1.15;letter-spacing:-.02em;white-space:nowrap}
+.nums > div > span{display:block;margin-top:4px;font-size:13px;color:var(--sub);line-height:1.4}
+.points{margin-top:22px;display:grid;gap:9px}
+.points li{display:grid;grid-template-columns:44px 1fr;gap:10px;font-size:15px;line-height:1.5}
+.points li em{font-style:normal;font-size:12px;font-weight:700;color:var(--gray);padding-top:2px}
+.points li .t{color:var(--gray);font-size:13px;font-weight:700;margin-left:4px;white-space:nowrap}
+.points li .t.me{color:var(--red)}
+.flow{margin-top:14px;display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:13px;color:var(--sub)}
+.flow b{font-weight:700;color:var(--navy);border:1px solid var(--line);border-radius:4px;padding:2px 8px}
+.flow b.h{color:var(--red);border-color:var(--red)}
+.links{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:20px;font-size:14px;font-weight:700}
+.links a{color:var(--navy);text-decoration:none;border-bottom:2px solid var(--red);padding-bottom:1px}
+.links a:hover{color:var(--red)}
+
+.media{display:grid;gap:12px}
+.media figure{border:1px solid var(--line);background:var(--soft);overflow:hidden}
+.media figure img{width:100%;height:100%;object-fit:contain}
+.media .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.media figcaption{font-size:12px;color:var(--gray);padding:6px 10px;background:#fff;border-top:1px solid var(--line)}
+.media .main img{max-height:46vh}
+.media .row img{max-height:22vh}
+.media > figure:not(.main) img{max-height:26vh}
+.media .main img{max-height:44vh}
+.media.tall .main img{max-height:72vh}
+
+/* 수상 */
+.awards h2{font-size:38px;font-weight:800;color:var(--navy);letter-spacing:-.02em;margin-top:8px}
+.award-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:32px}
+.award{display:flex;flex-direction:column}
+.award button{all:unset;cursor:zoom-in;display:block;border:1px solid var(--line);background:var(--soft)}
+.award button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.award img{width:100%;aspect-ratio:827/1170;object-fit:cover;object-position:top}
+.award time{margin-top:12px;font-size:13px;font-weight:700;color:var(--gray)}
+.award h3{margin-top:2px;font-size:15px;font-weight:700;line-height:1.4;color:var(--navy)}
+.award .grade{margin-top:6px;font-size:16px;font-weight:800;color:var(--red)}
+.award .proj-name{margin-top:2px;font-size:13px;color:var(--sub)}
+.hint{margin-top:16px;font-size:13px;color:var(--gray)}
+
+dialog{border:0;padding:0;max-width:min(92vw,720px);max-height:92vh;background:transparent;margin:auto}
+dialog::backdrop{background:rgba(8,11,39,.82)}
+dialog img{max-height:86vh;width:auto;margin:0 auto;background:#fff}
+dialog form{text-align:right;margin-bottom:8px}
+dialog button{font:inherit;font-size:14px;font-weight:700;color:#fff;background:transparent;border:1px solid rgba(255,255,255,.6);border-radius:4px;padding:4px 12px;cursor:pointer}
+
+
+/* 하단 */
+.foot{padding:40px 64px;border-top:2px solid var(--navy);font-size:15px;color:var(--sub)}
+.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 28px}
+.foot a{color:var(--navy);font-weight:700;text-decoration:none;border-bottom:1px solid var(--line)}
+
+/* 반응형 */
+@media screen and (max-width:1100px){
+  .proj .wrap{grid-template-columns:1fr;gap:28px}
+  .media .main img,.media.tall .main img{max-height:none}
+  .media .row img,.media > figure:not(.main) img{max-height:none}
+  .award-grid{grid-template-columns:repeat(3,1fr)}
+  .index{grid-template-columns:repeat(2,1fr)}
+}
+@media screen and (max-width:640px){
+  html{scroll-snap-type:none}
+  .page{min-height:auto;padding:48px 16px}
+  .foot{padding:32px 16px}
+  .hero h1{font-size:40px}
+  .hero .edu{font-size:16px}
+  .index{grid-template-columns:1fr}
+  .proj h2,.awards h2{font-size:30px}
+  .summary{font-size:17px}
+  .nums{grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:1fr 1fr}
+  .nums div,.nums div + div{padding:12px 12px 0 0;border-left:0}
+  .nums strong{font-size:24px;white-space:normal}
+  .points li{grid-template-columns:38px 1fr}
+  .media .row{grid-template-columns:1fr}
+  .award-grid{grid-template-columns:repeat(2,1fr);gap:20px 12px}
+}
+
+/* 인쇄: 섹션 1개 = 1페이지 */
+@page{size:1440px 900px;margin:0}
+@media print{
+  html{scroll-snap-type:none}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{height:900px;min-height:0;overflow:hidden;break-after:page;page-break-after:always;break-inside:avoid;border-top:0}
+  .foot{display:none}
+  .proj .wrap{grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:48px}
+  .media .row{grid-template-columns:1fr 1fr}
+  .award-grid{grid-template-columns:repeat(6,1fr)}
+  .index{grid-template-columns:repeat(3,1fr)}
+  .page{padding:56px 64px}
+  dialog{display:none}
+  .media .main img{max-height:414px}
+  .media .row img{max-height:198px}
+  .media > figure:not(.main) img{max-height:234px}
+  .media .main img{max-height:396px}
+  .media.tall .main img{max-height:648px}
+  .links a{border-bottom:0}
+  .links a::after{content:" " attr(data-url);font-weight:400;color:var(--gray);font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<header class="page hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow">PORTFOLIO · 2026</p>
+    <h1>백주은</h1>
+    <p class="edu"><b>경북대학교 컴퓨터학부</b> · 2027.02 졸업예정 · 학점 <span class="tnum">4.18 / 4.5</span></p>
+    <div class="chips"><span class="chip">SQLD</span><span class="chip">ADsP</span><span class="chip">TOEIC 840</span></div>
+    <p class="contact">
+      <span>이메일 <a href="mailto:jueun1827@naver.com">jueun1827@naver.com</a></span>
+      <span>GitHub <a href="https://github.com/gogumajoha" target="_blank" rel="noopener">github.com/gogumajoha</a></span>
+    </p>
+
+
+    <nav class="index" aria-label="프로젝트 목록">
+      <a href="#itda"><i>01</i><b>잇다</b><small>멀티에이전트 · PM · 매칭 에이전트</small></a>
+      <a href="#before"><i>02</i><b>BEFORE</b><small>실서비스 출시 · 백엔드</small></a>
+      <a href="#coolspot"><i>03</i><b>Cool Spot</b><small>업무 분석 <span class="ar">→</span> 에이전트 설계</small></a>
+      <a href="#imbank"><i>04</i><b>아임파인뱅크앤유</b><small>n8n 에이전트 · 해커톤 최우수상</small></a>
+      <a href="#robot"><i>05</i><b>홈케어 로봇 AI</b><small>해외 인턴 · 온디바이스 LLM</small></a>
+      <a href="#steel"><i>06</i><b>철강 결함 탐지</b><small>비전 AI · 제조 현장 · 대상</small></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- 01 잇다 -->
+<section class="page proj" id="itda" aria-labelledby="itda-h">
+  <div class="wrap">
+    <div class="text">
+      <div class="meta-top"><span class="num">01</span></div>
+      <h2 id="itda-h">잇다</h2>
+      <p class="facts"><span>2026.05 – 2026.10</span><span>6인 팀</span><span>카카오테크캠퍼스 4기</span></p>
+      <p class="role"><b>내 역할</b> PM · 매칭 에이전트 개발</p>
+      <p class="summary">장애아동 기관 기록을 매칭·요약하는 멀티에이전트 서비스</p>
+      <div class="nums tnum">
+        <div><strong>382 / 405건</strong><span>검증 세트 자동 확정</span></div>
+        <div><strong>0건</strong><span>자동 확정 중 오매칭</span></div>
+        <div><strong>98%</strong><span>프롬프트 캐시 적중률</span></div>
+      </div>
+      <ul class="points">
+        <li><em>문제</em><span>같은 입력에도 LLM 확신도 0.72~0.98로 흔들림</span></li>
+        <li><em>판단</em><span>확신도 기준 대신 규칙 판정으로 자동 확정 결정<span class="t me">(담당)</span></span></li>
+        <li><em>판단</em><span>자체 채점 96% vs 3줄 기준선 100% 비교로 평가 재검토<span class="t me">(담당)</span></span></li>
+        <li><em>구조</em><span>LangGraph 에이전트 4개 + 사람 승인 2곳<span class="t">(팀)</span></span></li>
+      </ul>
+      <p class="flow" aria-label="처리 흐름"><b>매칭</b><span class="ar">→</span><b>검증</b><span class="ar">→</span><b>요약</b><span class="ar">→</span><b class="h">사람 승인 1</b><span class="ar">→</span><b>인사이트</b><span class="ar">→</span><b class="h">사람 승인 2</b></p>
+      <p class="links">
+        <a href="https://iitda.duckdns.org" data-url="iitda.duckdns.org" target="_blank" rel="noopener">서비스</a>
+        <a href="https://github.com/kakaotechcampus-4/ktc4-kyungpook-2" data-url="github.com/kakaotechcampus-4/ktc4-kyungpook-2" target="_blank" rel="noopener">GitHub</a>
+      </p>
+    </div>
+    <div class="media">
+      <figure class="main"><img src="assets/itda-gates.webp" width="1600" height="889" loading="lazy" alt="잇다 사람 승인 2곳 설계 슬라이드: 기록 저장 전 선생님 검토, 정보 발송 전 선생님 승인"><figcaption>사람 승인 2곳: 기록 저장 전 · 정보 발송 전</figcaption></figure>
+      <figure><img src="assets/itda-parent-app.webp" width="1600" height="446" loading="lazy" alt="잇다 학부모용 모바일 앱 화면 설계 7개: 가입, 기관 권한, 아이 정보, 요청사항, 일지, 리포트"><figcaption>학부모 앱 화면 설계</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 02 BEFORE -->
+<section class="page proj" id="before" aria-labelledby="before-h">
+  <div class="wrap">
+    <div class="text">
+      <div class="meta-top"><span class="num">02</span></div>
+      <h2 id="before-h">BEFORE</h2>
+      <p class="facts"><span>2026.03 – 2026.06</span><span>5인 팀</span><span>산학협력 프로젝트</span></p>
+      <p class="role"><b>내 역할</b> 백엔드 (인증·사용자·관심종목·보안)</p>
+      <div class="badges"><span class="badge">산학협력 프로젝트 경진대회 최우수상</span><span class="badge">KCC 2026 학부생 논문 장려상</span></div>
+      <p class="summary">주식 하방 리스크 예측 서비스, 토스 미니앱 출시</p>
+      <div class="nums tnum">
+        <div><strong>27% <span class="ar">→</span> 73%</strong><span>위기 구간 하방 예측 성공률</span></div>
+        <div><strong>4.8배</strong><span>LLM 처리 시간 단축</span></div>
+        <div><strong>1만 명</strong><span>토스 미니앱 누적 사용자</span></div>
+      </div>
+      <ul class="points">
+        <li><em>문제</em><span>고정 손실 함수 모델, 위기 구간 하방 예측 실패</span></li>
+        <li><em>판단</em><span>손실 함수 M1~M3 비교, Optuna 튜닝 (논문)<span class="t">(팀)</span></span></li>
+        <li><em>판단</em><span>50종목 단일 모델 > 섹터별 8개 모델 검증<span class="t">(팀)</span></span></li>
+        <li><em>결과</em><span>LLM 해설 병렬화, 6분 1초 <span class="ar">→</span> 1분 15초<span class="t me">(담당)</span></span></li>
+      </ul>
+      <p class="links">
+        <a href="https://zeri-client.vercel.app" data-url="zeri-client.vercel.app" target="_blank" rel="noopener">서비스</a>
+        <a href="https://youtu.be/aG20x-B75vw" data-url="youtu.be/aG20x-B75vw" target="_blank" rel="noopener">데모 영상</a>
+        <a href="https://github.com/JusikCool/ZERi-server" data-url="github.com/JusikCool/ZERi-server" target="_blank" rel="noopener">GitHub (서버)</a>
+        <a href="https://github.com/JusikCool/ZERi-client" data-url="github.com/JusikCool/ZERi-client" target="_blank" rel="noopener">GitHub (클라이언트)</a>
+      </p>
+    </div>
+    <div class="media">
+      <figure class="main"><img src="assets/before-app.webp" width="1600" height="900" loading="lazy" alt="BEFORE 앱 화면 3장: 변동성 큰 종목, 종목별 하방 리스크 예측 차트, 예측 해설"><figcaption>서비스 화면: 종목별 하방 리스크 예측 · 해설</figcaption></figure>
+      <div class="row">
+        <figure><img src="assets/before-result.webp" width="1600" height="900" loading="lazy" alt="하방 예측 성공률 비교: COVID-19 위기 구간 27.26%에서 73.13%"><figcaption>기존 고정형 vs 적응형 손실 함수</figcaption></figure>
+        <figure><img src="assets/before-loss.webp" width="1600" height="900" loading="lazy" alt="손실 함수와 모델 구성별 하방 리스크 예측 성공률 막대그래프: 50종목 단일 모델이 섹터별 모델보다 높음"><figcaption>50종목 단일 vs 섹터별 모델</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 Cool Spot -->
+<section class="page proj" id="coolspot" aria-labelledby="cool-h">
+  <div class="wrap">
+    <div class="text">
+      <div class="meta-top"><span class="num">03</span></div>
+      <h2 id="cool-h">Cool Spot</h2>
+      <p class="facts"><span>2026.04 – 2026.05</span><span>4인 팀</span><span>Google Cloud AI Agent Challenge</span></p>
+      <p class="role"><b>내 역할</b> 기획 · 업무 분석 · 대시보드 페이지</p>
+      <p class="summary">폭염 대응 시설 입지를 추천·설명하는 행정 에이전트</p>
+      <div class="nums tnum">
+        <div><strong>5대 지표</strong><span>격자별 가중합 점수</span></div>
+        <div><strong>1주일 <span class="ar">→</span> 수 분</strong><span>후보지 검토 시간 (기대 효과)</span></div>
+      </div>
+      <ul class="points">
+        <li><em>문제</em><span>폭염 시설 후보지 검토에 담당자 수작업 1주일</span></li>
+        <li><em>판단</em><span>업무 분석 <span class="ar">→</span> 수집·분석·추천·설명·결정 5단계 설계<span class="t me">(담당)</span></span></li>
+        <li><em>구현</em><span>대구 북구 격자별 5대 지표 가중합 추천<span class="t">(팀)</span></span></li>
+        <li><em>구현</em><span>Gemini 근거 설명 + 실패 시 규칙 기반 대체<span class="t">(팀)</span></span></li>
+        <li><em>구현</em><span>지도 대시보드 · 랜딩 페이지<span class="t me">(담당)</span></span></li>
+      </ul>
+    </div>
+    <div class="media">
+      <figure class="main"><img src="assets/coolspot-dashboard.webp" width="1190" height="1300" loading="lazy" alt="Cool Spot 지도 대시보드: 대구 북구 격자별 취약도와 인프라 부족도 레이어, 기존 인프라 마커"><figcaption>지도 대시보드: 격자별 취약도 · 인프라 부족도</figcaption></figure>
+      <figure><img src="assets/coolspot-weights.webp" width="1600" height="900" loading="lazy" alt="5대 지표 가중치: 폭염위험도 30%, 녹지부족도 20%, 취약계층비율 20%, 생활거점중요도 15%, 기존인프라부족도 15%"><figcaption>5대 지표 가중치</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 04 아임파인뱅크앤유 -->
+<section class="page proj" id="imbank" aria-labelledby="imbank-h">
+  <div class="wrap">
+    <div class="text">
+      <div class="meta-top"><span class="num">04</span></div>
+      <h2 id="imbank-h">아임파인뱅크앤유</h2>
+      <p class="facts"><span>2025.11</span><span>5인 팀</span><span>대학 X Upstage AI Agent 해커톤</span></p>
+      <p class="role"><b>내 역할</b> n8n 워크플로우 · React</p>
+      <div class="badges"><span class="badge">대학 X Upstage AI Agent 해커톤 최우수상</span></div>
+      <p class="summary">은행 메일·문서의 개인정보 유출 탐지 에이전트</p>
+      <div class="nums tnum">
+        <div><strong>5인</strong><span>팀 규모</span></div>
+        <div><strong>2단계</strong><span>정규식 + Solar LLM 탐지</span></div>
+        <div><strong>최우수상</strong><span>2025.12.10</span></div>
+      </div>
+      <ul class="points">
+        <li><em>문제</em><span>메일·파일 전송 시 직원 실수로 개인정보 유출</span></li>
+        <li><em>판단</em><span>정규식 1차 탐지 + Solar LLM 문맥 2차 판별<span class="t">(팀)</span></span></li>
+        <li><em>구현</em><span>n8n: 텍스트 추출 <span class="ar">→</span> 탐지 <span class="ar">→</span> 위험도 <span class="ar">→</span> 알림<span class="t me">(담당)</span></span></li>
+        <li><em>구현</em><span>React 탐지 요청 화면<span class="t me">(담당)</span></span></li>
+      </ul>
+    </div>
+    <div class="media">
+      <figure class="main"><img src="assets/imbank-n8n.webp" width="1600" height="900" loading="lazy" alt="n8n 메일 자동 검사 워크플로우: 텍스트 추출, 정규식 기반 PII 탐지와 LLM 문맥 기반 2차 판별, 규정 준수 검증, 위험도 산정, 결과 출력"><figcaption>n8n 메일 자동 검사 워크플로우</figcaption></figure>
+      <figure><img src="assets/imbank-flow.webp" width="1600" height="900" loading="lazy" alt="솔루션 플로우: OCR 추출, Solar LLM 검사, 정규식 필터링, 위반 조항 확인, 위험도 검사, 로그 저장"><figcaption>솔루션 플로우</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 05 홈케어 로봇 -->
+<section class="page proj" id="robot" aria-labelledby="robot-h">
+  <div class="wrap">
+    <div class="text">
+      <div class="meta-top"><span class="num">05</span></div>
+      <h2 id="robot-h">홈케어 로봇 AI</h2>
+      <p class="facts"><span>2026.01 – 2026.02</span><span>베트남 다낭 해외 인턴 (Paracel)</span><span>20인 프로젝트</span></p>
+      <p class="role"><b>내 역할</b> AI 파트: 의도 분류 · 대화 · 사물 인식</p>
+      <p class="summary">홈케어 로봇의 온디바이스 대화·인식 AI 모듈</p>
+      <div class="nums tnum">
+        <div><strong>20인</strong><span>프로젝트 규모 (AI 파트)</span></div>
+        <div><strong>3개</strong><span>온디바이스 AI 모듈</span></div>
+        <div><strong>0.6s</strong><span>대화 응답 지연</span></div>
+      </div>
+      <ul class="points">
+        <li><em>의도</em><span>FunctionGemma-270M 의도 분류 <span class="ar">→</span> 로봇 동작 매핑<span class="t me">(담당)</span></span></li>
+        <li><em>대화</em><span>LFM2-350M + RAG, GGUF 양자화로 응답 0.6s<span class="t me">(담당)</span></span></li>
+        <li><em>인식</em><span>DINOv2 + FAISS 원샷 사물 인식<span class="t me">(담당)</span></span></li>
+        <li><em>통합</em><span>임베디드·SLAM 파트와 로봇 연동<span class="t">(팀)</span></span></li>
+      </ul>
+    </div>
+    <div class="media">
+      <figure class="main"><img src="assets/robot-modules.webp" width="1240" height="700" loading="lazy" alt="담당 파트 개요: 의도 분류 FunctionGemma, 대화 LFM2-350M과 RAG, 사물 인식 DINOv2"><figcaption>담당 3개 모듈</figcaption></figure>
+      <div class="row">
+        <figure><img src="assets/robot-lfm2.webp" width="1368" height="720" loading="lazy" alt="LFM2 Medical Assistant 대화 화면과 멀티턴 테스트 케이스"><figcaption>LFM2 대화 데모</figcaption></figure>
+        <figure><img src="assets/robot-intent.webp" width="1446" height="856" loading="lazy" alt="음성 입력부터 FunctionGemma 의도 분류, 응답 생성, 주행 명령까지의 노드 흐름도"><figcaption>의도 분류 노드 흐름</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 철강 -->
+<section class="page proj" id="steel" aria-labelledby="steel-h">
+  <div class="wrap">
+    <div class="text">
+      <div class="meta-top"><span class="num">06</span></div>
+      <h2 id="steel-h">철강 결함 탐지</h2>
+      <p class="facts"><span>2026.01 – 2026.02</span><span>4인 팀</span><span>대구RISE 청년인재 혁신아카데미</span></p>
+      <p class="role"><b>내 역할</b> 모델 학습 전략 · 성능 최적화</p>
+      <div class="badges"><span class="badge">대구RISE 청년인재 혁신아카데미 대상</span></div>
+      <p class="summary">YOLOv8 철강 표면 결함 탐지 성능 최적화</p>
+      <div class="nums tnum">
+        <div><strong>0.73 <span class="ar">→</span> 0.876</strong><span>mAP50</span></div>
+        <div><strong>0.33 <span class="ar">→</span> 0.85</strong><span>Crazing 재현율</span></div>
+      </div>
+      <ul class="points">
+        <li><em>문제</em><span>Crazing 등 취약 클래스 재현율 0.33</span></li>
+        <li><em>판단</em><span>혼동행렬·EigenCAM으로 오분류 원인 분석<span class="t me">(담당)</span></span></li>
+        <li><em>판단</em><span>증강 <span class="ar">→</span> 학습 최적화 <span class="ar">→</span> 취약 클래스 보강 3단계 실험<span class="t me">(담당)</span></span></li>
+        <li><em>결과</em><span>mAP50 0.876, 혁신아카데미 대상<span class="t">(팀)</span></span></li>
+      </ul>
+    </div>
+    <div class="media">
+      <figure class="main"><img src="assets/steel-result.webp" width="948" height="721" loading="lazy" alt="검증 이미지 탐지 결과와 단계별 성능표: Baseline mAP50 0.73에서 3단계 0.876"><figcaption>탐지 결과 · 단계별 성능</figcaption></figure>
+      <figure><img src="assets/steel-crazing.webp" width="1600" height="793" loading="lazy" alt="Crazing 결함 원본 이미지와 탐지 결과 박스 비교"><figcaption>Crazing 원본 / 탐지 결과</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 수상 -->
+<section class="page awards" id="awards" aria-labelledby="awards-h">
+  <div class="wrap">
+    <p class="eyebrow">AWARDS</p>
+    <h2 id="awards-h">수상 6회</h2>
+    <div class="award-grid">
+      <div class="award">
+        <button type="button" data-full="assets/award-sanhak.webp" aria-label="산학협력 프로젝트 경진대회 최우수상 상장 확대"><img src="assets/award-sanhak-thumb.webp" width="254" height="360" loading="lazy" alt="2026학년도 1학기 산학협력 프로젝트 경진대회 최우수상 상장"></button>
+        <time class="tnum">2026.06.23</time><h3>2026학년도 1학기 산학협력 프로젝트 경진대회</h3><p class="grade">최우수상</p><p class="proj-name">BEFORE</p>
+      </div>
+      <div class="award">
+        <button type="button" data-full="assets/award-kcc.webp" aria-label="KCC 2026 학부생 논문경진대회 장려상 상장 확대"><img src="assets/award-kcc-thumb.webp" width="260" height="360" loading="lazy" alt="2026 한국컴퓨터종합학술대회 학부생 논문경진대회 장려상 상장"></button>
+        <time class="tnum">2026.07.31</time><h3>한국컴퓨터종합학술대회(KCC 2026) 학부생 논문경진대회</h3><p class="grade">장려상</p><p class="proj-name">BEFORE</p>
+      </div>
+      <div class="award">
+        <button type="button" data-full="assets/award-upstage.webp" aria-label="대학 X Upstage AI Agent 해커톤 최우수상 상장 확대"><img src="assets/award-upstage-thumb.webp" width="254" height="360" loading="lazy" alt="대학 X Upstage AI Agent 해커톤 최우수상 상장"></button>
+        <time class="tnum">2025.12.10</time><h3>대학 X Upstage AI Agent 해커톤</h3><p class="grade">최우수상</p><p class="proj-name">아임파인뱅크앤유</p>
+      </div>
+      <div class="award">
+        <button type="button" data-full="assets/award-rise.webp" aria-label="대구RISE 청년인재 혁신아카데미 대상 상장 확대"><img src="assets/award-rise-thumb.webp" width="254" height="360" loading="lazy" alt="대구RISE사업 청년인재 혁신아카데미 로봇 특화 교육과정 대상 상장"></button>
+        <time class="tnum">2026.03.09</time><h3>대구RISE 청년인재 혁신아카데미 로봇 특화 교육과정</h3><p class="grade">대상</p><p class="proj-name">철강 결함 탐지</p>
+      </div>
+      <div class="award">
+        <button type="button" data-full="assets/award-kit.webp" aria-label="한국정보기술학회 우수논문상 상장 확대"><img src="assets/award-kit-thumb.webp" width="255" height="360" loading="lazy" alt="2025년 한국정보기술학회 추계종합학술대회 대학생 논문경진대회 우수논문상(동상) 상장"></button>
+        <time class="tnum">2025.11.28</time><h3>한국정보기술학회 추계 대학생 논문경진대회</h3><p class="grade">우수논문상(동상)</p><p class="proj-name">바이브 코딩 LLM 구현 성능 비교 논문</p>
+      </div>
+      <div class="award">
+        <button type="button" data-full="assets/award-int.webp" aria-label="I&amp;T 융합 프로젝트 장려상 상장 확대"><img src="assets/award-int-thumb.webp" width="254" height="360" loading="lazy" alt="2025 I&amp;T 융합 프로젝트 장려상 상장"></button>
+        <time class="tnum">2025.12.22</time><h3>2025 I&amp;T 융합 프로젝트</h3><p class="grade">장려상</p><p class="proj-name">BEANKONG</p>
+      </div>
+    </div>
+    <p class="hint">증서 클릭 시 확대 · 다른 팀원 이름 블러 처리</p>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>이메일 <a href="mailto:jueun1827@naver.com">jueun1827@naver.com</a></span>
+    <span>GitHub <a href="https://github.com/gogumajoha" target="_blank" rel="noopener">github.com/gogumajoha</a></span>
+  </div>
+</footer>
+
+<dialog id="viewer" aria-label="증서 확대 보기">
+  <form method="dialog"><button type="submit">닫기</button></form>
+  <img alt="">
+</dialog>
+
+<script>
+(function(){
+  var d=document.getElementById('viewer'); if(!d||!d.showModal) return;
+  var img=d.querySelector('img');
+  document.querySelectorAll('.award button').forEach(function(b){
+    b.addEventListener('click',function(){
+      img.src=b.dataset.full; img.alt=b.querySelector('img').alt; d.showModal();
+    });
+  });
+  d.addEventListener('click',function(e){ if(e.target===d) d.close(); });
+})();
+</script>
+</body>
+</html>
